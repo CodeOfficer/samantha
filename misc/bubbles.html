@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <title>Event Order</title> 
+  <style type="text/css" media="screen">
+  
+  </style>
+  <script src="../vendor/jquery.js" type="text/javascript"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      
+      
+      $(document).bind('link_clicked form_submitted', function(e, that){
+        switch(e.type)
+        {
+        case 'link_clicked':
+          console.log('caught LINK click for: ', that);
+          break;
+        case 'form_submitted':
+          console.log('caught FORM submit for: ', that);
+          break;
+        default:
+          console.log('HMMMMMMMMMMMMMMMMMMMMMMM');
+        }
+        
+        console.log('--', that);
+        $("<div>" + that + "</div>").appendTo("body").fadeOut(1000);
+      });
+
+
+      $('a:not(.ignore)').live('click', function(e){
+        $(document).trigger('link_clicked', this);
+        return false;
+      });
+
+
+      $('form:not(.ignore)').live('submit', function(e){
+        $(document).trigger('form_submitted', this);
+        return false;
+      });
+      
+      
+    });
+  </script>
+</head>
+<body>
+  
+<p>(<a href="bubbles.html" class="ignore">reset</a>)</p>
+
+<form action="#/post" method="post" accept-charset="utf-8">
+  <p><input type="submit" value="Post &rarr;"/></p>
+</form>
+
+<form action="#/get" method="get" accept-charset="utf-8">  
+  <p><input type="submit" value="Get &rarr;"/></p>
+</form>
+
+<form action="#/post_ignore" method="post" accept-charset="utf-8" class="ignore">
+  <p><input type="submit" value="Post (ignore) &rarr;"/></p>
+</form>
+
+<form action="#/get_ignore" method="get" accept-charset="utf-8" class="ignore">  
+  <p><input type="submit" value="Get (ignore) &rarr;"/></p>
+</form>
+
+<p><a href="#/click">click me!</a></p>
+
+
+</body>
+</html>
+
+
