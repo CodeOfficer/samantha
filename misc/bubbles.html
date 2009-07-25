@@ -13,34 +13,61 @@
     $(function() {
       
       
-      $(document).bind('link_clicked form_submitted', function(e, that){
+      $(document).bind('clicked.samantha submitted.samantha', function(e, that){
         switch(e.type)
         {
-        case 'link_clicked':
-          console.log('caught LINK click for: ', that);
+        case 'clicked':
+          console.log('caught LINK click for: ', $(that));
           break;
-        case 'form_submitted':
-          console.log('caught FORM submit for: ', that);
+        case 'submitted':
+          console.log('caught FORM submit for: ', $(that).closest('form'));
           break;
         default:
           console.log('HMMMMMMMMMMMMMMMMMMMMMMM');
         }
         
-        console.log('--', that);
-        $("<div>" + that + "</div>").appendTo("body").fadeOut(1000);
+        $("<div>" + that + "</div>").appendTo("body").fadeOut(3000);
       });
 
 
       $('a:not(.ignore)').live('click', function(e){
-        $(document).trigger('link_clicked', this);
-        return false;
+        $(this).trigger('clicked.samantha', this);
+        e.preventDefault();
       });
 
 
       $('form:not(.ignore)').live('submit', function(e){
-        $(document).trigger('form_submitted', this);
-        return false;
+        $(this).trigger('submitted.samantha', this);
+        e.preventDefault();
       });
+
+      // $(document).bind('click.samantha submit.samantha', function(e, that){
+      //   switch(e.type)
+      //   {
+      //   case 'click.samantha':
+      //     console.log('caught LINK click for: ', $(that));
+      //     break;
+      //   case 'submit.samantha':
+      //     console.log('caught FORM submit for: ', $(that).closest('form'));
+      //     break;
+      //   default:
+      //     console.log('HMMMMMMMMMMMMMMMMMMMMMMM');
+      //   }
+      //   
+      //   $("<div>" + that + "</div>").appendTo("body").fadeOut(3000);
+      // });
+      // 
+      // 
+      // $('a:not(.ignore)').live('click', function(e){
+      //   $(this).trigger('click.samantha', this);
+      //   e.preventDefault();
+      // });
+      // 
+      // 
+      // $('form:not(.ignore)').live('submit', function(e){
+      //   $(this).trigger('submit.samantha', this);
+      //   e.preventDefault();
+      // });
       
       
     });
@@ -66,7 +93,8 @@
   <p><input type="submit" value="Get (ignore) &rarr;"/></p>
 </form>
 
-<p><a href="#/click">click me!</a></p>
+<p><a href="#/click1">click me #1!</a></p>
+<p><a href="#/click2">click me #2!</a></p>
 
 
 </body>
