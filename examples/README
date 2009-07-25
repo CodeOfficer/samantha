@@ -1,3 +1,21 @@
 http://blogs.claritycon.com/blogs/sean_devlin/archive/2009/06/23/a-lightweight-event-framework-in-javascript.aspx
 
 http://www.sitepoint.com/blogs/2008/07/23/javascript-event-delegation-is-easier-than-you-think/
+
+
+state machines
+-----------------
+http://doc.appcelerator.org/expressions:statemachine
+
+
+misc
+-----------------
+http://github.com/denis/jquery-plugins/blob/master/ajaxable/jquery.ajaxable.js
+
+command pattern
+-----------------
+http://peter.michaux.ca/articles/the-command-pattern-in-javascript-encapsulating-function-property-calls
+
+bind events to objects
+-----------------
+http://xwisdomhtml.com/bindo.html

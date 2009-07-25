@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <title>Event Order</title> 
+  <style type="text/css" media="screen">
+  
+  </style>
+  <script src="../vendor/jquery.js" type="text/javascript"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      
+      
+      // $('#input-field-id').val($('#input-field-id').val() + 'more text');
+      
+      var KeyCommand = function(e, receiver){
+        this.key = String.fromCharCode(e.which);
+        this.receiver = receiver;
+      };
+      KeyCommand.prototype.add = function(){
+        console.log('adding: ', this.key);
+        $(this.receiver).val($(this.receiver).val() + this.key);
+      };
+      KeyCommand.prototype.remove = function(){
+        console.log('removeing: ', this.key);
+      };
+      KeyCommand.prototype.toString = function(){
+        return this.key;
+      };
+      
+      var UndoKeyCommand = function(command){
+        this.command = command;
+        this.keyStack = this.keyStack || [];
+      };
+      UndoKeyCommand.prototype.add = function(){
+        this.keyStack.push(this.command);
+        this.command.add();
+      };
+      UndoKeyCommand.prototype.remove = function(){
+        this.keyStack.pop(this.command);
+      };
+      UndoKeyCommand.prototype.toString = function(){
+        return this.keyStack.toString();
+      };
+      
+      var keyStack = [];
+      
+      $('#characters').keypress(function(e){
+        // var k = new KeyCommand(e, this);
+        var u = new UndoKeyCommand(new KeyCommand(e, this)).add();
+        console.log(u);
+      });
+      
+      $('#characters').focus();
+      
+      
+      // $(document).bind('clicked.samantha submitted.samantha', function(e, that){
+      //   switch(e.type)
+      //   {
+      //   case 'clicked':
+      //     console.log('caught LINK click for: ', $(that));
+      //     break;
+      //   case 'submitted':
+      //     console.log('caught FORM submit for: ', $(that).closest('form'));
+      //     break;
+      //   default:
+      //     console.log('HMMMMMMMMMMMMMMMMMMMMMMM');
+      //   }
+      //   
+      //   $("<div>" + that + "</div>").appendTo("body").fadeOut(3000);
+      // });
+      // 
+      // 
+      // $('a:not(.ignore)').live('click', function(e){
+      //   $(this).trigger('clicked.samantha', this);
+      //   e.preventDefault();
+      // });
+      // 
+      // 
+      // $('form:not(.ignore)').live('submit', function(e){
+      //   $(this).trigger('submitted.samantha', this);
+      //   e.preventDefault();
+      // });
+      
+    });
+  </script>
+</head>
+<body>
+  
+<p>(<a href="command.html" class="ignore">reset</a>)</p>
+
+<form action="#/nothing" method="get" accept-charset="utf-8">
+  <p><input type="text" name="entrey" value="" id="characters"/></p>
+  <p><input type="submit" value="Post &rarr;"/></p>
+</form>
+
+
+
+</body>
+</html>
+
+
