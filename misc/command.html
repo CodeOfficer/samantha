@@ -12,77 +12,77 @@
   <script type="text/javascript" charset="utf-8">
     $(function() {
       
+    
       
-      // $('#input-field-id').val($('#input-field-id').val() + 'more text');
+      var commandStack = [];
       
-      var KeyCommand = function(e, receiver){
-        this.key = String.fromCharCode(e.which);
-        this.receiver = receiver;
-      };
-      KeyCommand.prototype.add = function(){
-        console.log('adding: ', this.key);
-        $(this.receiver).val($(this.receiver).val() + this.key);
-      };
-      KeyCommand.prototype.remove = function(){
-        console.log('removeing: ', this.key);
-      };
-      KeyCommand.prototype.toString = function(){
-        return this.key;
-      };
+      var ClickCommand = function(e, receiver){
+          this.e = e;
+          this.receiver = receiver;
+        };
+        ClickCommand.prototype.execute = function(){
+          return this.key;
+        };
       
-      var UndoKeyCommand = function(command){
-        this.command = command;
-        this.keyStack = this.keyStack || [];
-      };
-      UndoKeyCommand.prototype.add = function(){
-        this.keyStack.push(this.command);
-        this.command.add();
-      };
-      UndoKeyCommand.prototype.remove = function(){
-        this.keyStack.pop(this.command);
-      };
-      UndoKeyCommand.prototype.toString = function(){
-        return this.keyStack.toString();
-      };
+      // var UndoClickCommand = function(command, stack){
+      //     this.command = command;
+      //     this.stack = stack;
+      //   };
+      //   UndoClickCommand.prototype.add = function(){
+      //     this.stack.push(this.command);
+      //     this.command.add();
+      //   };
+      //   UndoClickCommand.prototype.remove = function(){
+      //     this.stack.pop(this.command);
+      //   };
+      //   UndoClickCommand.prototype.toString = function(){
+      //     return this.stack.toString();
+      //   };
       
-      var keyStack = [];
+      // $('#characters').click(function(e){
+      //   // var k = new ClickCommand(e, this);
+      //   var u = new UndoClickCommand(new ClickCommand(e, this), keyStack).add();
+      //   console.log(u);
+      // });
       
-      $('#characters').keypress(function(e){
-        // var k = new KeyCommand(e, this);
-        var u = new UndoKeyCommand(new KeyCommand(e, this)).add();
-        console.log(u);
+      $(document).bind('clicked.samantha submitted.samantha', function(e, that){
+        switch(e.type)
+        {
+          case 'clicked':
+            console.log('samantha LINK for: ', $(that));
+            break;
+          case 'submitted':
+            console.log('samantha FORM for: ', $(that).closest('form'));
+            break;
+          default: console.log('JUST DIE ALREADY!!');
+        }
+        $("<div>" + that + "</div>").appendTo("body").fadeOut(2000);
       });
       
-      $('#characters').focus();
+      var samantha_click = function(e) {
+        var path = $(this).attr('href');
+        if (path.match(/^#\//)) {
+          $(this).trigger('clicked.samantha', [this, path]);
+          e.preventDefault();
+        } else {
+          return true;
+        }
+      };
       
+      var samantha_submit = function(e) {
+        $(this).trigger('submitted.samantha', this);
+        e.preventDefault();
+      };
       
-      // $(document).bind('clicked.samantha submitted.samantha', function(e, that){
-      //   switch(e.type)
-      //   {
-      //   case 'clicked':
-      //     console.log('caught LINK click for: ', $(that));
-      //     break;
-      //   case 'submitted':
-      //     console.log('caught FORM submit for: ', $(that).closest('form'));
-      //     break;
-      //   default:
-      //     console.log('HMMMMMMMMMMMMMMMMMMMMMMM');
-      //   }
-      //   
-      //   $("<div>" + that + "</div>").appendTo("body").fadeOut(3000);
-      // });
-      // 
-      // 
-      // $('a:not(.ignore)').live('click', function(e){
-      //   $(this).trigger('clicked.samantha', this);
-      //   e.preventDefault();
-      // });
-      // 
-      // 
-      // $('form:not(.ignore)').live('submit', function(e){
-      //   $(this).trigger('submitted.samantha', this);
-      //   e.preventDefault();
-      // });
+      $('#bind').click(function(){
+        $('a:not(.ignore)').live('click', samantha_click);
+        $('form:not(.ignore)').live('submit', samantha_submit);
+      });
+      
+      $('#unbind').click(function(){
+        $('a:not(.ignore)').die('click', samantha_click);
+        $('form:not(.ignore)').die('submit', samantha_submit);
+      });
       
     });
   </script>
@@ -90,13 +90,29 @@
 <body>
   
 <p>(<a href="command.html" class="ignore">reset</a>)</p>
+<p><a href="#" id="bind">bind all!</a></p>
+<p><a href="#" id="unbind">unbind all!</a></p>
 
-<form action="#/nothing" method="get" accept-charset="utf-8">
-  <p><input type="text" name="entrey" value="" id="characters"/></p>
+<form action="#/post" method="post" accept-charset="utf-8">
   <p><input type="submit" value="Post &rarr;"/></p>
 </form>
 
+<form action="#/get" method="get" accept-charset="utf-8">  
+  <p><input type="submit" value="Get &rarr;"/></p>
+</form>
 
+<form action="#/post_ignore" method="post" accept-charset="utf-8" class="ignore">
+  <p><input type="submit" value="Post (ignore) &rarr;"/></p>
+</form>
+
+<form action="#/get_ignore" method="get" accept-charset="utf-8" class="ignore">  
+  <p><input type="submit" value="Get (ignore) &rarr;"/></p>
+</form>
+
+<p><a href="#/click1">click me #1!</a></p>
+<p><a href="#/click2">click me #2!</a></p>
+<p><a href="#click1_ignore">click me #1! (ignore)</a></p>
+<p><a href="#click2_ignore">click me #2! (ignore)</a></p>
 
 </body>
 </html>
