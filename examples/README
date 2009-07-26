@@ -19,3 +19,84 @@ http://peter.michaux.ca/articles/the-command-pattern-in-javascript-encapsulating
 bind events to objects
 -----------------
 http://xwisdomhtml.com/bindo.html
+
+
+Class
+srender(name, template, data)
+
+PATH_REPLACER
+PATH_NAME_MATCHER
+
+Samantha.VERSION
+
+Samantha.Object
+  + init(set)
+  + clone(obj)
+  + toHash()
+  + toHTML()
+  + uuid()
+  + each()
+  + log()
+
+Samantha.Application
+  ROUTE_VERBS
+  APP_EVENTS
+  _last_route
+  _running
+  data_store_name
+  element_selector
+  debug
+  silence_404
+  run_interval_every
+
+  + init(app)
+  + toString()
+  + $element()
+  + route(verb, path, callback)
+  + eventNamespace()
+  + bind(name, data, callback)
+  + trigger(name, data, context)
+  + before(callback)
+  + after(callback)
+  + isRunning()
+  + helpers(extensions)
+  + run(start_url)
+  + unload()
+  + addLogger(logger)
+  + lookupRoute(verb, path)
+  + runRoute(verb, path, params)
+  + getLocation()
+  + setLocation(new_location)
+  + swap(content)
+  + notFound(verb, path)
+  + _defineRouteShortcut(verb)
+  + _checkLocation()
+  + _checkFormSubmission(form)
+  + _listen(name, callback)
+  + _unlisten(name, callback)
+  
+  app
+  routes
+  listeners
+  befores
+  namespace
+  context_prototype
+  
+Samantha.EventContext
+  + init(app, verb, path, params)
+  + $element()
+  + template(template, data, name)
+  + partial(path, data, callback)
+  + redirect(to)
+  + trigger(name, data)
+  + eventNamespace()
+  + notFound()
+  
+
+
+
+
+
+
+
+
