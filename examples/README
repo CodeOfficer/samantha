@@ -29,7 +29,8 @@ PATH_NAME_MATCHER
 
 Samantha.VERSION
 
-Samantha.Object
+Samantha.Object 
+-----------------------
   + init(set)
   + clone(obj)
   + toHash()
@@ -39,6 +40,7 @@ Samantha.Object
   + log()
 
 Samantha.Application
+-----------------------
   ROUTE_VERBS
   APP_EVENTS
   _last_route
@@ -83,6 +85,7 @@ Samantha.Application
   context_prototype
   
 Samantha.EventContext
+-----------------------
   + init(app, verb, path, params)
   + $element()
   + template(template, data, name)

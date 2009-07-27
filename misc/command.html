@@ -63,7 +63,7 @@
         var path = $(this).attr('href');
         if (path.match(/^#\//)) {
           $(this).trigger('clicked.samantha', [this, path]);
-          e.preventDefault();
+          // e.preventDefault();
         } else {
           return true;
         }
