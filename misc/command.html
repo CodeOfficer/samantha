@@ -10,20 +10,52 @@
   </style>
   <script src="../vendor/jquery.js" type="text/javascript"></script>
   <script type="text/javascript" charset="utf-8">
+
+    var Samantha;
+  
     $(function() {
-      
-    
-      
-      var commandStack = [];
-      
-      var ClickCommand = function(e, receiver){
-          this.e = e;
-          this.receiver = receiver;
-        };
-        ClickCommand.prototype.execute = function(){
-          return this.key;
-        };
-      
+            
+      Samantha = {
+        routes: function(){
+          var routes = {};
+          return {
+            route: function(name, callback){
+              routes[name] = routes[name] || [];
+              routes[name].push(callback);
+            },
+            execute: function(name){
+              var i, callbacks = routes[name], args;
+              if (callbacks) {
+                args = Array.prototype.slice.call(arguments, 1);
+                for (var i=0; i < callbacks.length; i++) {
+                  callbacks[i].apply(null, args);
+                }
+              }
+            }
+          };
+        }()
+      };
+
+      Samantha.routes.route('#/some_route', function(a, b){
+        console.log('#/some_route 1 executed!', a, b);
+      });
+      Samantha.routes.route('#/some_route', function(){
+        console.log('#/some_route 2 executed!');
+      });
+
+      Samantha.routes.execute('#/some_route', "A", "B");
+
+
+      // var commandStack = [];
+      // 
+      // var ClickCommand = function(e, receiver){
+      //     this.e = e;
+      //     this.receiver = receiver;
+      //   };
+      //   ClickCommand.prototype.execute = function(){
+      //     return this.key;
+      //   };
+      // 
       // var UndoClickCommand = function(command, stack){
       //     this.command = command;
       //     this.stack = stack;
@@ -63,7 +95,7 @@
         var path = $(this).attr('href');
         if (path.match(/^#\//)) {
           $(this).trigger('clicked.samantha', [this, path]);
-          // e.preventDefault();
+          e.preventDefault();
         } else {
           return true;
         }
