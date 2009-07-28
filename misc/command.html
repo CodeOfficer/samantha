@@ -14,6 +14,24 @@
     var Samantha;
   
     $(function() {
+      
+      $.fn.samantha = function() {
+        return this.each(function(){
+          console.log(this);
+        });
+      };
+      
+      $.samantha = function() {
+        console.log(this);
+      };
+      
+      $('p').samantha({
+        
+      });
+      
+      $.samantha({
+        
+      });
             
       Samantha = {
         routes: function(){
