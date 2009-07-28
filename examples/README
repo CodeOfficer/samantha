@@ -2,6 +2,7 @@ http://blogs.claritycon.com/blogs/sean_devlin/archive/2009/06/23/a-lightweight-e
 
 http://www.sitepoint.com/blogs/2008/07/23/javascript-event-delegation-is-easier-than-you-think/
 
+http://www.openajax.org/member/wiki/OpenAjax_Hub_1.0_Specification_PublishSubscribe
 
 state machines
 -----------------
@@ -19,6 +20,16 @@ http://peter.michaux.ca/articles/the-command-pattern-in-javascript-encapsulating
 bind events to objects
 -----------------
 http://xwisdomhtml.com/bindo.html
+
+
+plugins
+-----------------
+http://plugins.jquery.com/project/bindo
+http://code.google.com/p/ajaxsoft/wiki/actionController
+http://blog.threedubmedia.com/2008/10/jquerydelegate.html
+http://plugins.jquery.com/project/jQuerySubscribe
+http://claypooljs.com/
+http://plugins.jquery.com/project/livequery
 
 
 Class
