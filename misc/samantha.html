@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <title>Event Order</title> 
+  <style type="text/css" media="screen">
+    .left {
+      width: 50%;
+      position: relative;
+      float: left;
+      background-color: #ddd;
+    }
+    .right {
+      width: 50%;
+      position: relative;
+      float: left;
+      background-color: #FF8000;      
+    }
+    .row {
+      margin-bottom: 1em;
+    }
+    .clear {
+      clear: both;
+    }
+    .param {
+      color: #FF0000;
+    }
+  </style>
+  <script type="text/javascript" src="../vendor/jquery.js"></script>
+  <script type="text/javascript" src="../lib/samantha.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+
+
+      
+    });
+  </script>
+</head>
+<body>
+  
+<p>(<a href="samantha.html" class="ignore">reset</a>)</p>
+
+<div class="row">
+  
+  <div class="left">
+    <form action="#/post" method="post" accept-charset="utf-8">
+      <p><input type="submit" value="Post &rarr;"/></p>
+    </form>
+  
+    <form action="#/get" method="get" accept-charset="utf-8">  
+      <p><input type="submit" value="Get &rarr;"/></p>
+    </form>
+  
+    <form action="#/put" method="put" accept-charset="utf-8">
+      <p><input type="submit" value="Put &rarr;"/></p>
+    </form>
+  
+    <form action="#/delete" method="delete" accept-charset="utf-8">
+      <p><input type="submit" value="Delete &rarr;"/></p>
+    </form>
+    <p><a href="#/click1">click me #1!</a></p>
+    <p><a href="#/click2">click me #2!</a></p>
+  </div>
+
+  <div class="right">
+    <form action="#/post_ignore" method="post" accept-charset="utf-8" class="ignore">
+      <p><input type="submit" value="Post (ignore) &rarr;"/></p>
+    </form>
+
+    <form action="#/get_ignore" method="get" accept-charset="utf-8" class="ignore">  
+      <p><input type="submit" value="Get (ignore) &rarr;"/></p>
+    </form>
+
+    <p><a href="#click1_ignore">click me #1! (ignore)</a></p>
+    <p><a href="#click2_ignore">click me #2! (ignore)</a></p>
+  </div>
+  
+  <div class="clear"></div>
+  
+</div>
+
+</body>
+</html>
+
+
