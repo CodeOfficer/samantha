@@ -31,11 +31,92 @@
   <script type="text/javascript" src="../vendor/jquery.js"></script>
   <script type="text/javascript" src="../lib/samantha.js"></script>
   <script type="text/javascript" charset="utf-8">
-    $(function() {
+    // var app;
+    //   
+    // ;(function($) {
+    //   
+    //   app = $.samantha(function() { with(this) {
+    //       
+    //       // get('#/', function() { with(this) {
+    //       //   $('#main').text('');
+    //       // }});
+    //       //         
+    //       // get('#/click1', function() { with(this) {
+    //       //   $('#main').text('Hello World');
+    //       // }});
+    //       
+    //   }});
+    // 
+    //   $(function() {
+    //     // app.run('#/');
+    //     console.log(app);
+    //   });
+    //   
+    // })(jQuery);
+    
+var observable = { 
 
+  addObserver: function(observer) {
+      if (!this.observers) {
+          this.observers = [];
+      }
+      this.observers.push(observer);
+  },
+  
+  notifyObservers: function() {
+      if (!this.observers) {
+          return;
+      }
+      for (var i=0; i<this.observers.length; i++) {
+          this.observers[i].update();
+      }
+  },
 
-      
-    });
+  mixin: function(subject) {
+      for (var p in observable) {
+          if (p=='mixin') {
+              continue;
+          }
+          subject[p] = observable[p];
+      }
+  }
+
+};
+
+// ---------------------------
+
+function WeatherModel() {}
+
+observable.mixin(WeatherModel.prototype);
+
+WeatherModel.prototype.setTemperature = function(temp) {
+    this.temp = temp;
+    this.notifyObservers();
+};
+
+WeatherModel.prototype.getTemperature = function() {
+    return this.temp;
+};
+
+// ---------------------------
+
+function CurrentConditionsView(model) {
+    this.model = model;
+    model.addObserver(this);
+}
+
+CurrentConditionsView.prototype.update = function() {
+    console.log(this.model.getTemperature());
+};
+
+// ---------------------------
+
+var victoriaWeather = new WeatherModel();
+var victoriaNews = new CurrentConditionsView(victoriaWeather);
+
+victoriaWeather.setTemperature(15.3);
+victoriaWeather.setTemperature(17.0);
+victoriaWeather.setTemperature(14.7);
   </script>
 </head>
 <body>

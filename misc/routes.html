@@ -41,6 +41,20 @@
               routes[name] = routes[name] || [];
               routes[name].push(callback);
             },
+            // route: function(verb, path, callback, params){
+            //   var r = {verb: verb, path: path, callback: callback, params: params}
+            //   routes[name] = routes[name] || [];
+            //   routes[name].push(callback);
+            // },
+            lookup: function(name){
+              var routed = false;
+              if (typeof routes[name] != 'undefined') {
+                $.each(routes[name], function(index, route) {
+                  
+                });
+              };
+              return routed;
+            },
             execute: function(name){
               var i, callbacks = routes[name], args;
               if (callbacks) {
