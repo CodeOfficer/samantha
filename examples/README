@@ -12,6 +12,7 @@ http://doc.appcelerator.org/expressions:statemachine
 misc
 -----------------
 http://github.com/denis/jquery-plugins/blob/master/ajaxable/jquery.ajaxable.js
+http://peter.michaux.ca/articles/transitioning-from-java-classes-to-javascript-prototypes
 
 command pattern
 -----------------
