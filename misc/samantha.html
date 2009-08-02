@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-  <title>Event Order</title> 
+  <title>samantha</title> 
   <style type="text/css" media="screen">
     .left {
       width: 50%;
@@ -53,70 +53,6 @@
     //   });
     //   
     // })(jQuery);
-    
-var observable = { 
-
-  addObserver: function(observer) {
-      if (!this.observers) {
-          this.observers = [];
-      }
-      this.observers.push(observer);
-  },
-  
-  notifyObservers: function() {
-      if (!this.observers) {
-          return;
-      }
-      for (var i=0; i<this.observers.length; i++) {
-          this.observers[i].update();
-      }
-  },
-
-  mixin: function(subject) {
-      for (var p in observable) {
-          if (p=='mixin') {
-              continue;
-          }
-          subject[p] = observable[p];
-      }
-  }
-
-};
-
-// ---------------------------
-
-function WeatherModel() {}
-
-observable.mixin(WeatherModel.prototype);
-
-WeatherModel.prototype.setTemperature = function(temp) {
-    this.temp = temp;
-    this.notifyObservers();
-};
-
-WeatherModel.prototype.getTemperature = function() {
-    return this.temp;
-};
-
-// ---------------------------
-
-function CurrentConditionsView(model) {
-    this.model = model;
-    model.addObserver(this);
-}
-
-CurrentConditionsView.prototype.update = function() {
-    console.log(this.model.getTemperature());
-};
-
-// ---------------------------
-
-var victoriaWeather = new WeatherModel();
-var victoriaNews = new CurrentConditionsView(victoriaWeather);
-
-victoriaWeather.setTemperature(15.3);
-victoriaWeather.setTemperature(17.0);
-victoriaWeather.setTemperature(14.7);
   </script>
 </head>
 <body>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <title>private</title> 
+  <style type="text/css" media="screen">
+  
+  </style>
+  <script type="text/javascript" src="../vendor/jquery.js"></script>
+  <script type="text/javascript" src="../lib/samantha.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    public and private
+    var test = function () {
+        //private members
+        var x = 1;
+        var y = function () {
+            return x * 2;
+        };
+        //public interface
+        return {
+            setx : function (newx) {
+                x = newx;
+            },
+            gety : function () {
+                return y();
+            }
+        }
+    }();
+    
+    assert(undefined == test.x);
+    assert(undefined == test.y);
+    assert(2 == test.gety());
+    test.setx(5);
+    assert(10 == test.gety());
+  </script>
+</head>
+<body>
+  
+<p>(<a href="private.html" class="ignore">reset</a>)</p>
+
+</body>
+</html>
+
+

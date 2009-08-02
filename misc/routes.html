@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-  <title>Event Order</title> 
+  <title>routes</title> 
   <style type="text/css" media="screen">
   
   </style>
@@ -55,8 +55,8 @@
               };
               return routed;
             },
-            execute: function(name){
-              var i, callbacks = routes[name], args;
+            execute: function(verb, path){
+              var i, callbacks = routes[path], args;
               if (callbacks) {
                 args = Array.prototype.slice.call(arguments, 1);
                 for (var i=0; i < callbacks.length; i++) {
@@ -68,14 +68,14 @@
         }()
       };
 
-      Samantha.routes.route('#/some_route', function(a, b){
+      Samantha.routes.route('get', '#/some_route', function(a, b){
         console.log('#/some_route 1 executed!', a, b);
       });
-      Samantha.routes.route('#/some_route', function(){
+      Samantha.routes.route('get', '#/some_route', function(){
         console.log('#/some_route 2 executed!');
       });
 
-      Samantha.routes.execute('#/some_route', "A", "B");
+      Samantha.routes.execute('get', '#/some_route', "A", "B");
       
     });
   </script>
