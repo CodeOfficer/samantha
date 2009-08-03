@@ -11,6 +11,47 @@
   <script type="text/javascript" src="../vendor/jquery.js"></script>
   <script type="text/javascript" src="../lib/samantha.js"></script>
   <script type="text/javascript" charset="utf-8">
+  // // should be a singleton
+  // Samantha.Routeable = { 
+  //   add_route: function(route) {
+  //     if (!this.routes) {
+  //       this.routes = [];
+  //     }
+  //     this.routes.push(route);
+  //   },
+  // 
+  //   execute_routes: function() {
+  //     if (!this.routes) {
+  //       return;
+  //     }
+  //     for (var i=0; i<this.routes.length; i++) {
+  //       this.routes[i].execute();
+  //     }
+  //   },
+  // 
+  //   mixin: function(subject) {
+  //     for (var func in Samantha.Routeable) {
+  //       if (func=='mixin') {
+  //         continue;
+  //       }
+  //       subject[func] = Samantha.Routeable[func];
+  //     }
+  //   }
+  // };
+  // 
+  // Samantha.Application = function(){};
+  // 
+  // Samantha.Routeable.mixin(Samantha.Application);
+  // 
+  // Samantha.Application.prototype.setTemperature = function(temp) {
+  //   this.temp = temp;
+  //   this.execute_routes();
+  // };
+  // 
+  // Samantha.Application.prototype.getTemperature = function() {
+  //   return this.temp;
+  // };
+  
     var observable = { 
 
       addObserver: function(observer) {
