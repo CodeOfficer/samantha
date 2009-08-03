@@ -11,16 +11,47 @@
   <script src="../vendor/jquery.js" type="text/javascript"></script>
   <script type="text/javascript" charset="utf-8">
 
-      var RoutesSingleton = function(){
-        
-        var _routes = {};
-        
-        return {
-          
-        };
-        
+      function RoutesSingleton() {};
+       
+      RoutesSingleton.prototype._routes = [];
+       
+      RoutesSingleton.prototype.add = function(x){
+        this._routes.push(x);
       };
+       
+      RoutesSingleton.prototype.remove = function(x){
+        this._routes.pop(x);
+      };
+       
+      RoutesSingleton.prototype.log = function(){
+        console.log(this._routes.join(', '));
+      };
+        
+      // RoutesSingleton.prototype = {
+      //   _routes: [],
+      //   add: function(x) {
+      //     this._routes.push(x);
+      //   },
+      //   remove: function(x) {
+      //     this._routes.pop(x);
+      //   },
+      //   log: function(x) {
+      //     console.log(this._routes.join(', '));
+      //   }
+      // };  
+
+      var x = new RoutesSingleton();
+      var y = new RoutesSingleton();
       
+      x.add('xxx');
+      y.add('yyy');
+      x.add('yyy');
+      
+      x.log();
+      y.log();
+      
+      console.log(x.log() === y.log());
+                  
   </script>
 </head>
 <body>

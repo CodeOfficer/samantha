@@ -12,6 +12,33 @@
   <script type="text/javascript" src="../lib/samantha.js"></script>
   <script type="text/javascript" charset="utf-8">
 
+      function RoutesSingleton() {};
+        
+      RoutesSingleton.prototype = {
+        _routes: [],
+        add: function(x) {
+          this._routes.push(x);
+        },
+        remove: function(x) {
+          this._routes.pop(x);
+        },
+        log: function(x) {
+          console.log(this._routes.join(', '));
+        }
+      };  
+
+      var x = new RoutesSingleton();
+      var y = new RoutesSingleton();
+      
+      x.add('xxx');
+      y.add('yyy');
+      x.add('yyy');
+      
+      x.log();
+      y.log();
+      
+      console.log(x.log() === y.log());
+                  
   </script>
 </head>
 <body>
@@ -20,5 +47,3 @@
 
 </body>
 </html>
-
-

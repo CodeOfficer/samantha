@@ -23,10 +23,10 @@ command pattern
 -----------------
 http://peter.michaux.ca/articles/the-command-pattern-in-javascript-encapsulating-function-property-calls
 
-bind events to objects
+singleton
 -----------------
-http://xwisdomhtml.com/bindo.html
-
+http://blog.anselmbradford.com/2009/04/21/object-oriented-javascript-tip-the-quintessential-singleton/
+http://www.javascriptkata.com/2007/04/04/how-to-make-a-singleton/
 
 plugins
 -----------------

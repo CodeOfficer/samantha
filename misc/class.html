@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Untitled Document</title>
+
+    <link href="./css/ext-all.css" media="screen" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+      // myobject.js
+
+      function MyClass(param1){
+        // Private Section
+
+        // create a reference to this, called self so the self variable 
+        // can then be accessed by the public object 
+        var self = this;
+
+
+        // Totally private variables are defined with var
+        var private1 = "fred";
+
+
+        // Private variable that can be accessed by the implementation of the public object only
+        this.private2 = "private2 data";
+
+
+        // private functions
+        this.privateMethod1 = function(){
+          console.log("private Method 1 called : private1 variable value is (" + private1 + ")");
+        }
+
+
+        // public Object defintion which gets returned to the outside world.
+        return {
+          publicVariable : 10,
+
+          publicMethod1 : function(){
+            console.log("public method 1 called");
+          },
+
+          publicMethod2 : function(){
+            console.log("public method 2 called about to call privatemethod1");
+            // Note: this refers to the current object about to returned
+            //       to access the private methods, we need to use 'self' 
+            self.privateMethod1();
+            console.log("Private Variable (private1):" + private1);
+            console.log("Private Variable (private2):" + self.private2);
+          }
+
+        };
+
+      };
+
+      // static members and properties
+      MyClass.prototype.staticFunction = function(){
+        console.log("Hello from a static function");
+      }
+
+      MyClass.prototype.staticVar = 69;
+
+      // ------------------------------------------------------
+
+      var test = new MyClass("Private1 passed in by constructor");
+
+      function callPublic1(){
+        test.publicMethod1();
+      }
+
+      function callPublic2(){
+        test.publicMethod2();
+      }
+      
+      function tryCallPrivateMethod1(){
+        test.privateMethod1();
+      }
+
+      function tryAccessPrivateVariable(){
+        console.log("Private 1:" + test.private1);
+        console.log("Private 2:" + test.private2);
+      } 
+      
+      function tryAccessPublicVariable(){
+        console.log(test.publicVariable);
+      } 
+
+      function callStaticFunction(){
+        MyClass.prototype.staticFunction();
+      }
+
+      function getStaticVariable(){
+        console.log(MyClass.prototype.staticVar);
+      }
+    </script>
+
+  </head>
+  <body>
+    <a href="javascript:callPublic1();">Call Public Method 1</a><br/>
+    <a href="javascript:callPublic2();">Call Public Method 2</a><br/>
+    <br>
+    <a href="javascript:tryCallPrivateMethod1();">Try and call PrivateMethod1</a> This should fail<br/>
+    <a href="javascript:tryAccessPrivateVariable();">Try and access private variable</a> This should return undefined as the variable does not exist<br/>
+    <a href="javascript:tryAccessPublicVariable();">Try and access public variable</a> This should display 10<br/>
+    <br>
+    <a href="javascript:callStaticFunction();">Call static function on class prototype</a><br/>
+    <a href="javascript:getStaticVariable();">Get static variable from class prototype</a> Should display 69<br/>
+  </body>
+</html>
