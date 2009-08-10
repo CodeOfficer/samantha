@@ -111,9 +111,15 @@ Samantha.EventContext
   + trigger(name, data)
   + eventNamespace()
   + notFound()
+
+listener
+  listens for events 
+  lets apps register/unregister events to listen for
   
 
-
+app
+  each app can be defined sammy style
+  
 
 
 
