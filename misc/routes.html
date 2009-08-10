@@ -68,12 +68,20 @@
         }()
       };
 
+console.log(1);
+
       Samantha.routes.route('get', '#/some_route', function(a, b){
         console.log('#/some_route 1 executed!', a, b);
       });
+
+console.log(1);
+
       Samantha.routes.route('get', '#/some_route', function(){
         console.log('#/some_route 2 executed!');
       });
+      
+
+console.log(1);
 
       Samantha.routes.execute('get', '#/some_route', "A", "B");
       
