@@ -36,20 +36,22 @@
     ;(function($) {
       
       app = $.samantha(function() { with(this) {
+
+          console.log('•', 'body of app run');
           
-          get('#/click1', function() { with(this) {
-            $('#main').text('click1');
-          }});
-                  
-          get('#/click2', function() { with(this) {
-            $('#main').text('click2');
-          }});
+          // get('#/click1', function() { with(this) {
+          //   $('#main').text('click1');
+          // }});
+          //         
+          // get('#/click2', function() { with(this) {
+          //   $('#main').text('click2');
+          // }});
           
       }});
     
       $(function() {
-        console.log(app);
         app.run();
+        console.log(app);
       });
       
     })(jQuery);
