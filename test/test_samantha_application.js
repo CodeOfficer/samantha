@@ -56,11 +56,11 @@
 
     context('Samantha.Application', {
       before: function() {
-        this.app = new $.samantha(function() { });
+        this.app1 = new $.samantha(function() { });
       }
     })
     .should('extend Samantha.Object', function() {
-      isType(this.app.toHash, Function);
+      isType(this.app1.toHash, Function);
     });
 
 
@@ -80,6 +80,24 @@
     })
     .should('create a unique namespace for each app', function() {
       equals((this.app1.namespace == this.app2.namespace), false);
+    });
+
+
+    context('Samantha.Application', 'RANDOM TEST', {
+      before: function() {
+        this.app1 = new $.samantha(function() { 
+          this.get('#/route_1', function() { 
+            console.log('ran #/route_1');
+          });
+          this.route('post', '#/route_2', function() {
+            console.log('ran #/route_2');
+          });
+        });
+      }
+    })
+    .should('work', function() {
+      // working on app's route and its integration with app.router
+      ok(false);
     });
 
 
