@@ -1,6 +1,7 @@
 (function($) {
   with(jqUnit) {
 
+// ----------------------------------------------------------------------------
 
     context('Samantha', {})
     .should('contain objects', function() {
@@ -12,17 +13,54 @@
       matches(/^(\d+)\.(\d+)\.(\d+)$/, Samantha.VERSION);
     });
 
+// ----------------------------------------------------------------------------
 
     context('Samantha.Router', {
       before: function() {
         this.router1 = new Samantha.Router;
         this.router2 = new Samantha.Router;
-        this.router1.add_route('route-1');
-        this.router2.add_route('route-2');
       }
     })
     .should('act like a singleton', function() {
+      this.router1.add_route('route-1');
+      this.router2.add_route('route-2');
       equals(this.router1.log_routes(), 'route-1, route-2');
+    })
+    .should('extend Samantha.Object', function() {
+      isType(this.router1.toHash, Function);
+    });
+
+// ----------------------------------------------------------------------------
+
+    context('Samantha.EventContext', {
+      before: function() {
+        this.event_context = new Samantha.EventContext;
+      }
+    })
+    .should('extend Samantha.Object', function() {
+      isType(this.event_context.toHash, Function);
+    });
+
+// ----------------------------------------------------------------------------
+
+    context('Samantha.Core', {
+      before: function() {
+        this.core = new Samantha.Core;
+      }
+    })
+    .should('extend Samantha.Object', function() {
+      isType(this.core.toHash, Function);
+    });
+
+// ----------------------------------------------------------------------------
+
+    context('Samantha.Application', {
+      before: function() {
+        this.app = new $.samantha(function() { });
+      }
+    })
+    .should('extend Samantha.Object', function() {
+      isType(this.app.toHash, Function);
     });
 
 
