@@ -6,7 +6,6 @@
     context('Samantha', {})
     .should('contain objects', function() {
       isType(Samantha.Application, Function);
-      isType(Samantha.Core, Function);
       isType(Samantha.EventContext, Function);
       isType(Samantha.Router, Function);
       isType(Samantha.Object, Object);
@@ -39,17 +38,6 @@
     })
     .should('extend Samantha.Object', function() {
       isType(this.event_context.toHash, Function);
-    });
-
-// ----------------------------------------------------------------------------
-
-    context('Samantha.Core', {
-      before: function() {
-        this.core = new Samantha.Core;
-      }
-    })
-    .should('extend Samantha.Object', function() {
-      isType(this.core.toHash, Function);
     });
 
 // ----------------------------------------------------------------------------
