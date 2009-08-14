@@ -112,16 +112,49 @@ Samantha.EventContext
   + eventNamespace()
   + notFound()
 
-listener
-  listens for events 
+
+Router
+  listens for samantha.events 
   lets apps register/unregister events to listen for
   
 
 app
   each app can be defined sammy style
   
+routes = {}
+routes.get = []
 
+  param_names = []
+  path = /#\/test$/
+  verb = "get"
+  callback = function()
 
+  var app = new Sammy.Application(function() {
+    with(this) {
+    
+      click('#/click_1', function() { with(this) {
+        // do this
+      }});
+    
+      submit('#/submit_1', function() { with(this) {
+        // do this
+      }});
+      
+      get('#/', function() { with(this) {
+        $('#main').text('');
+      }});
+    
+      get('#/test', function() { with(this) {
+        $('#main').text('Hello World');
+      }});
+      
+    }
+  });
+
+  
+  
+  
+  
 
 
 
