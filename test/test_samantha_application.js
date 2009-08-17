@@ -15,17 +15,19 @@
 // ----------------------------------------------------------------------------
 
     context('Samantha.Router', {
-      before: function() {
-        this.router1 = new Samantha.Router;
-        this.router2 = new Samantha.Router;
+      before: function() { 
+        this.router1 = new Samantha.Router(true);
+        this.router2 = new Samantha.Router(true);
       }
     })
     .should('act like a singleton', function() {
-      this.router1.add_route('route-1');
-      this.router2.add_route('route-2');
-      equals(this.router1.log_routes(), 'route-1, route-2');
+      this.router1.route(null, 'get', '#/test1', function(){});
+      this.router2.route(null, 'get', '#/test2', function(){});
+      equals(this.router1.num_routes(), 2);
     })
     .should('extend Samantha.Object', function() {
+      // this.router1 = new Samantha.Router;
+      // this.router2 = new Samantha.Router;
       isType(this.router1.toHash, Function);
     });
 

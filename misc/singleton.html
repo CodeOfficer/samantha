@@ -12,6 +12,51 @@
   <script type="text/javascript" src="../lib/samantha.js"></script>
   <script type="text/javascript" charset="utf-8">
 
+// --------------------------- example 1
+
+    MyRouter = function(reset){
+      
+      // var instance = (reset) ? true : false;
+      var instance;
+      
+      function constructor() {
+        this._routes = [];
+      };
+      
+      return {
+        getInstance: function() {
+          if (!instance) {
+            instance = constructor();
+          };
+          return instance;
+        }
+      };
+      
+      // if (reset) {
+      //   console.log('BEFORE', this._routes);
+      //   this._routes = [];
+      //   console.log('AFTER', this._routes);
+      // } else {
+      //   console.log('ELSE');
+      // };
+      // this.init();
+    };
+    
+    MyRouter.prototype = {
+      _routes: []
+    };
+
+    var x = new MyRouter();
+    x.getInstance();
+    console.log(x);
+    console.log(x._routes);
+  
+    // var x = new MyRouter.getInstance();
+    // var y = new MyRouter.getInstance();
+    // var z = new MyRouter.getInstance();
+
+// --------------------------- example 2
+
       function RoutesSingleton() {};
         
       RoutesSingleton.prototype = {
