@@ -14,21 +14,26 @@
 
 // --------------------------- example 1
 
-    MyRouter = function(reset){
+    MyRouter = function(value, reset){
       
       // var instance = (reset) ? true : false;
       var instance;
+      var val;
       
       function constructor() {
         this._routes = [];
+        this.val = value;
       };
       
       return {
         getInstance: function() {
           if (!instance) {
-            instance = constructor();
+            instance = new constructor();
           };
           return instance;
+        },
+        route: function(x) {
+          this._routes.push(x);
         }
       };
       
@@ -42,14 +47,19 @@
       // this.init();
     };
     
-    MyRouter.prototype = {
-      _routes: []
-    };
+    // MyRouter.prototype = {
+    //   _routes: []
+    // };
 
-    var x = new MyRouter();
-    x.getInstance();
+    var x = MyRouter('x').getInstance();
+    // x.route('1');
     console.log(x);
-    console.log(x._routes);
+    var y = MyRouter('y').getInstance();
+    // x.route('2');
+    console.log(y);
+    var z = MyRouter('z').getInstance();
+    // x.route('3');
+    console.log(z);
   
     // var x = new MyRouter.getInstance();
     // var y = new MyRouter.getInstance();
