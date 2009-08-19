@@ -14,85 +14,170 @@
 
 // --------------------------- example 1
 
-    MyRouter = function(value, reset){
-      
-      // var instance = (reset) ? true : false;
-      var instance;
-      var val;
-      
-      function constructor() {
-        this._routes = [];
-        this.val = value;
-      };
-      
-      return {
-        getInstance: function() {
-          if (!instance) {
-            instance = new constructor();
-          };
-          return instance;
-        },
-        route: function(x) {
-          this._routes.push(x);
-        }
-      };
-      
-      // if (reset) {
-      //   console.log('BEFORE', this._routes);
-      //   this._routes = [];
-      //   console.log('AFTER', this._routes);
-      // } else {
-      //   console.log('ELSE');
-      // };
-      // this.init();
+    var Router = function(x) {
+      this.value = x;
     };
     
-    // MyRouter.prototype = {
-    //   _routes: []
+    Router.prototype = {
+      
+      getValue: function(x) {
+        return this.value;
+      }
+      
+    };
+    
+    
+    var RouterFactory = function(unique) {
+      this.unique = unique || false;
+    };
+    
+    RouterFactory.prototype = {
+
+      router: null,
+      
+      getInstance: function(){
+        
+        if (this.unique==true) {
+          return new Router('UNIQUE');
+        };
+        
+        if (!this.router) {
+          this.router = new Router('');
+        };
+        
+        return this.router;
+      }
+      
+    };
+
+    a = new RouterFactory().getInstance();      // brand new
+    console.log(a);
+
+    b = new RouterFactory().getInstance();      // same instance as a
+    console.log(a == b, b);
+    
+    c = new RouterFactory(true).getInstance();  // unique
+    console.log(b == c, c);
+    
+    d = new RouterFactory(true).getInstance();  // unique
+    console.log(c == d, d);
+
+    e = new RouterFactory().getInstance();      // same instance as b
+    console.log(b == e, e);
+    
+
+    // var RouterFactory = {
+    // 
+    //   router: null,
+    // 
+    //   getInstance: function(unique){
+    //     
+    //     if (unique==true) {
+    //       return new Router('UNIQUE');
+    //     };
+    //     
+    //     if (!this.router) {
+    //       this.router = new Router('');
+    //     };
+    //     
+    //     return this.router;
+    //   }
+    //   
     // };
 
-    var x = MyRouter('x').getInstance();
-    // x.route('1');
-    console.log(x);
-    var y = MyRouter('y').getInstance();
-    // x.route('2');
-    console.log(y);
-    var z = MyRouter('z').getInstance();
-    // x.route('3');
-    console.log(z);
-  
-    // var x = new MyRouter.getInstance();
-    // var y = new MyRouter.getInstance();
-    // var z = new MyRouter.getInstance();
+    // a = RouterFactory.getInstance();      // brand new
+    // console.log(a);
+    // 
+    // b = RouterFactory.getInstance();      // same instance as a
+    // console.log(a == b, b);
+    // 
+    // c = RouterFactory.getInstance(true);  // unique
+    // console.log(a == c, c);
+    // 
+    // d = RouterFactory.getInstance(true);  // unique
+    // console.log(c == d, d);
 
-// --------------------------- example 2
 
-      function RoutesSingleton() {};
-        
-      RoutesSingleton.prototype = {
-        _routes: [],
-        add: function(x) {
-          this._routes.push(x);
-        },
-        remove: function(x) {
-          this._routes.pop(x);
-        },
-        log: function(x) {
-          console.log(this._routes.join(', '));
-        }
-      };  
 
-      var x = new RoutesSingleton();
-      var y = new RoutesSingleton();
-      
-      x.add('xxx');
-      y.add('yyy');
-      x.add('yyy');
-      
-      x.log();
-      y.log();
-      
-      console.log(x.log() === y.log());
+//     MyRouter = function(value, reset){
+//       
+//       // var instance = (reset) ? true : false;
+//       var instance;
+//       var val;
+//       
+//       function constructor() {
+//         this._routes = [];
+//         this.val = value;
+//       };
+//       
+//       return {
+//         getInstance: function() {
+//           if (!instance) {
+//             instance = new constructor();
+//           };
+//           return instance;
+//         },
+//         route: function(x) {
+//           this._routes.push(x);
+//         }
+//       };
+//       
+//       // if (reset) {
+//       //   console.log('BEFORE', this._routes);
+//       //   this._routes = [];
+//       //   console.log('AFTER', this._routes);
+//       // } else {
+//       //   console.log('ELSE');
+//       // };
+//       // this.init();
+//     };
+//     
+//     // MyRouter.prototype = {
+//     //   _routes: []
+//     // };
+// 
+//     var x = MyRouter('x').getInstance();
+//     // x.route('1');
+//     console.log(x);
+//     var y = MyRouter('y').getInstance();
+//     // x.route('2');
+//     console.log(y);
+//     var z = MyRouter('z').getInstance();
+//     // x.route('3');
+//     console.log(z);
+//   
+//     // var x = new MyRouter.getInstance();
+//     // var y = new MyRouter.getInstance();
+//     // var z = new MyRouter.getInstance();
+// 
+// // --------------------------- example 2
+// 
+//       function RoutesSingleton() {};
+//         
+//       RoutesSingleton.prototype = {
+//         _routes: [],
+//         add: function(x) {
+//           this._routes.push(x);
+//         },
+//         remove: function(x) {
+//           this._routes.pop(x);
+//         },
+//         log: function(x) {
+//           console.log(this._routes.join(', '));
+//         }
+//       };  
+// 
+//       var x = new RoutesSingleton();
+//       var y = new RoutesSingleton();
+//       
+//       x.add('xxx');
+//       y.add('yyy');
+//       x.add('yyy');
+//       
+//       x.log();
+//       y.log();
+//       
+//       console.log(x.log() === y.log());
                   
   </script>
 </head>
