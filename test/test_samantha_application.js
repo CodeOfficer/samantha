@@ -18,12 +18,11 @@
     context('Samantha.Router', {
       before: function() { 
         this.router1 = new Samantha.RouterFactory(true).getInstance();
-        this.router2 = new Samantha.RouterFactory(true).getInstance();
       }
     })
     .should('act like a singleton', function() {
       this.router1.route(null, 'get', '#/test1', function(){});
-      this.router2.route(null, 'get', '#/test2', function(){});
+      this.router1.route(null, 'get', '#/test2', function(){});
       equals(this.router1.num_routes(), 2);
     })
     .should('extend Samantha.Object', function() {
