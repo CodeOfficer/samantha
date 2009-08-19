@@ -8,6 +8,7 @@
       isType(Samantha.Application, Function);
       isType(Samantha.EventContext, Function);
       isType(Samantha.Router, Function);
+      isType(Samantha.RouterFactory, Function);
       isType(Samantha.Object, Object);
       matches(/^(\d+)\.(\d+)\.(\d+)$/, Samantha.VERSION);
     });
@@ -16,8 +17,8 @@
 
     context('Samantha.Router', {
       before: function() { 
-        this.router1 = new Samantha.Router(true);
-        this.router2 = new Samantha.Router(true);
+        this.router1 = new Samantha.RouterFactory(true).getInstance();
+        this.router2 = new Samantha.RouterFactory(true).getInstance();
       }
     })
     .should('act like a singleton', function() {
