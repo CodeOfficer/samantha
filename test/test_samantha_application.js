@@ -17,18 +17,21 @@
 
     context('Samantha.Router', {
       before: function() { 
-        this.router1 = new Samantha.RouterFactory(true).getInstance();
+        // this.router1 = new Samantha.RouterFactory().getInstance('app1');
       }
     })
     .should('act like a singleton', function() {
-      this.router1.route(null, 'get', '#/test1', function(){});
-      this.router1.route(null, 'get', '#/test2', function(){});
-      equals(this.router1.num_routes(), 2);
+      var router1 = new Samantha.RouterFactory().getRouterInstance('singleton');
+      // var router2 = new Samantha.RouterFactory().getRouterInstance('singleton');
+      console.log('debug', router1);
+      router1.route(null, 'get', '#/test1', function(){});
+      router1.route(null, 'get', '#/test2', function(){});
+      equals(router1.num_routes(), 2);
     })
     .should('extend Samantha.Object', function() {
       // this.router1 = new Samantha.Router;
       // this.router2 = new Samantha.Router;
-      isType(this.router1.toHash, Function);
+      // isType(this.router1.toHash, Function);
     });
 
 // ----------------------------------------------------------------------------
