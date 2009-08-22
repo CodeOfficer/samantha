@@ -15,23 +15,19 @@
 
 // ----------------------------------------------------------------------------
 
-    context('Samantha.Router', {
+    context('Samantha.RouterFactory', {
       before: function() { 
-        // this.router1 = new Samantha.RouterFactory().getInstance('app1');
+        this.router1 = new Samantha.RouterFactory().getRouterInstance('singleton');
+        this.router2 = new Samantha.RouterFactory().getRouterInstance('singleton');
       }
     })
     .should('act like a singleton', function() {
-      var router1 = new Samantha.RouterFactory().getRouterInstance('singleton');
-      var router2 = new Samantha.RouterFactory().getRouterInstance('singleton');
-      // console.log('debug', router1);
-      router1.route(null, 'get', '#/test1', function(){});
-      router2.route(null, 'get', '#/test2', function(){});
-      equals(router1.num_routes(), 2);
+      this.router1.route(null, 'get', '#/test1', function(){});
+      this.router2.route(null, 'get', '#/test2', function(){});
+      equals(this.router1.num_routes(), 2);
     })
     .should('extend Samantha.Object', function() {
-      // this.router1 = new Samantha.Router;
-      // this.router2 = new Samantha.Router;
-      // isType(this.router1.toHash, Function);
+      isType(this.router1.toHash, Function);
     });
 
 // ----------------------------------------------------------------------------
@@ -49,11 +45,11 @@
 
     context('Samantha.Application', {
       before: function() {
-        this.app1 = new $.samantha(function() { });
+        this.app = new $.samantha(function() { });
       }
     })
     .should('extend Samantha.Object', function() {
-      isType(this.app1.toHash, Function);
+      isType(this.app.toHash, Function);
     });
 
 
@@ -78,7 +74,7 @@
 
     context('Samantha.Application', 'RANDOM TEST', {
       before: function() {
-        this.app1 = new $.samantha(function() { 
+        this.app = new $.samantha(function() { 
           this.get('#/route_1', function() { 
             // console.log('ran #/route_1');
           });
@@ -89,40 +85,11 @@
       }
     })
     .should('work', function() {
-      // working on app's route and its integration with app.router
-      ok(false);
+      // ok(false);
+      equals(this.app.router.num_routes(), 2);
     });
 
-
-    // .should('set arbitrary settings in the app', function() {
-    //   equals(this.app.random_setting, 1);
-    // })
-    // .should('set namespace as random UUID', function() {
-    //   matches(/^(\d+)-(\d{1,3})$/, this.app.namespace);
-    // })
-    // .should('initialize empty routes object', function() {
-    //   isType(this.app.routes, Object);
-    // });
-
-    // context('Samantha.Application', 'init', {
-    //   before: function() {
-    //     this.app = new Samantha.Application(function() {
-    //       this.random_setting = 1;
-    //     });
-    //   }
-    // })
-    // .should('create a samantha object', function() {
-    //   defined(this.app, 'route');
-    // })
-    // .should('set arbitrary settings in the app', function() {
-    //   equals(this.app.random_setting, 1);
-    // })
-    // .should('set namespace as random UUID', function() {
-    //   matches(/^(\d+)-(\d{1,3})$/, this.app.namespace);
-    // })
-    // .should('initialize empty routes object', function() {
-    //   isType(this.app.routes, Object);
-    // });
+// ----------------------------------------------------------------------------
     
   }
 })(jQuery);
