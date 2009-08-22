@@ -22,10 +22,10 @@
     })
     .should('act like a singleton', function() {
       var router1 = new Samantha.RouterFactory().getRouterInstance('singleton');
-      // var router2 = new Samantha.RouterFactory().getRouterInstance('singleton');
-      console.log('debug', router1);
+      var router2 = new Samantha.RouterFactory().getRouterInstance('singleton');
+      // console.log('debug', router1);
       router1.route(null, 'get', '#/test1', function(){});
-      router1.route(null, 'get', '#/test2', function(){});
+      router2.route(null, 'get', '#/test2', function(){});
       equals(router1.num_routes(), 2);
     })
     .should('extend Samantha.Object', function() {
@@ -80,10 +80,10 @@
       before: function() {
         this.app1 = new $.samantha(function() { 
           this.get('#/route_1', function() { 
-            console.log('ran #/route_1');
+            // console.log('ran #/route_1');
           });
           this.route('post', '#/route_2', function() {
-            console.log('ran #/route_2');
+            // console.log('ran #/route_2');
           });
         });
       }
