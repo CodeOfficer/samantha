@@ -37,8 +37,6 @@
       
       app = $.samantha(function() { with(this) {
 
-          console.log('•', 'body of app run');
-
           element_selector = "#left";
           
           get('#/click1', function() { with(this) {
@@ -52,8 +50,6 @@
       }});
       
       app2 = $.samantha(function() { with(this) {
-      
-          console.log('•', 'body of app run');
           
           element_selector = "#right";
           
@@ -70,8 +66,6 @@
       $(function() {
         app.run();
         app2.run();
-        console.log(app);
-        console.log(app2);
       });
       
     })(jQuery);
@@ -84,60 +78,17 @@
 <div class="row">
   
   <div class="left" id="left">
-    <form action="#/post" method="post" accept-charset="utf-8">
-      <p><input type="submit" value="Post &rarr;"/></p>
-    </form>
-  
-    <form action="#/get" method="get" accept-charset="utf-8">  
-      <p><input type="submit" value="Get &rarr;"/></p>
-    </form>
-  
-    <form action="#/put" method="put" accept-charset="utf-8">
-      <p><input type="submit" value="Put &rarr;"/></p>
-    </form>
-  
-    <form action="#/delete" method="delete" accept-charset="utf-8">
-      <p><input type="submit" value="Delete &rarr;"/></p>
-    </form>
     <p><a href="#/click1">click me #1!</a></p>
     <p><a href="#/click2">click me #2!</a></p>
   </div>
 
   <div class="right" id="right">
-    <form action="#/post" method="post" accept-charset="utf-8">
-      <p><input type="submit" value="Post &rarr;"/></p>
-    </form>
-  
-    <form action="#/get" method="get" accept-charset="utf-8">  
-      <p><input type="submit" value="Get &rarr;"/></p>
-    </form>
-  
-    <form action="#/put" method="put" accept-charset="utf-8">
-      <p><input type="submit" value="Put &rarr;"/></p>
-    </form>
-  
-    <form action="#/delete" method="delete" accept-charset="utf-8">
-      <p><input type="submit" value="Delete &rarr;"/></p>
-    </form>
     <p><a href="#/click1">click me #1!</a></p>
     <p><a href="#/click2">click me #2!</a></p>
   </div>
   
   <div class="clear"></div>
   
-</div>
-
-<div class="row" style="display: none;">
-  <form action="#post_ignore" method="post" accept-charset="utf-8">
-    <p><input type="submit" value="Post (ignore) &rarr;"/></p>
-  </form>
-
-  <form action="#get_ignore" method="get" accept-charset="utf-8">  
-    <p><input type="submit" value="Get (ignore) &rarr;"/></p>
-  </form>
-
-  <p><a href="#click1_ignore">click me #1! (ignore)</a></p>
-  <p><a href="#click2_ignore">click me #2! (ignore)</a></p>
 </div>
 
 <div class="row">
