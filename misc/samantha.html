@@ -46,6 +46,10 @@
           get('#/click2', function() { with(this) {
             $('#main').text('click2');
           }});
+                  
+          get('#/test1/:name/test2/:thing', function() { with(this) {
+            $('#main').text('click2');
+          }});
           
       }});
       
@@ -86,9 +90,22 @@
     <p><a href="#/click2">click me #2!</a></p>
   </div>
 
-  <div class="right" id="right">
-    <p><a href="#/click1">click me #1!</a></p>
-    <p><a href="#/click2">click me #2!</a></p>
+  <div class="right" id="right">    
+    <form action="#/post" method="post" accept-charset="utf-8">
+      <p><input type="submit" value="Post &rarr;"/></p>
+    </form>
+  
+    <form action="#/get" method="get" accept-charset="utf-8">  
+      <p><input type="submit" value="Get &rarr;"/></p>
+    </form>
+  
+    <form action="#/put" method="put" accept-charset="utf-8">
+      <p><input type="submit" value="Put &rarr;"/></p>
+    </form>
+  
+    <form action="#/delete" method="delete" accept-charset="utf-8">
+      <p><input type="submit" value="Delete &rarr;"/></p>
+    </form>
   </div>
   
   <div class="clear"></div>
