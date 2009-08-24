@@ -17,8 +17,8 @@
 
     context('Samantha.RouterFactory', {
       before: function() { 
-        this.router1 = new Samantha.RouterFactory().getRouterInstance('singleton');
-        this.router2 = new Samantha.RouterFactory().getRouterInstance('singleton');
+        this.router1 = new Samantha.RouterFactory().getRouterInstanceFor('singleton');
+        this.router2 = new Samantha.RouterFactory().getRouterInstanceFor('singleton');
       }
     })
     .should('act like a singleton', function() {
