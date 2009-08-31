@@ -35,43 +35,51 @@
       
     ;(function($) {
       
-      app = $.samantha(function() { with(this) {
+      links = $.samantha(function() { with(this) {
 
-          element_selector = "#left";
+          element_selector = "#links";
           
           get('#/click1', function() { with(this) {
-            $('#main').text('click1');
+            $('#main').text('#/click1');
           }});
                   
           get('#/click2', function() { with(this) {
-            $('#main').text('click2');
+            $('#main').text('#/click2');
           }});
                   
           get('#/test1/:name/test2/:thing', function() { with(this) {
-            $('#main').text('click2');
+            $('#main').text('#/test1/:name/test2/:thing');
           }});
           
       }});
       
-      app2 = $.samantha(function() { with(this) {
+      forms = $.samantha(function() { with(this) {
           
-          element_selector = "#right";
-          
-          get('#/click1', function() { with(this) {
-            $('#main').text('click1');
+          element_selector = "#forms";
+                  
+          post('#/post', function() { with(this) {
+            $('#main').text('#/post');
           }});
                   
-          get('#/click2', function() { with(this) {
-            $('#main').text('click2');
+          get('#/get', function() { with(this) {
+            $('#main').text('#/post');
+          }});
+                  
+          put('#/put', function() { with(this) {
+            $('#main').text('#/put');
+          }});
+                  
+          destroy('#/destroy', function() { with(this) {
+            $('#main').text('#/destroy');
           }});
           
       }});
     
       $(function() {
-        app.run();
-        app2.run();
+        links.run();
+        forms.run();
         
-        console.log(app);
+        console.log(links, ' : ', forms);
         // console.log(app.toString());
         // console.log(app2.toString());
       });
@@ -85,12 +93,18 @@
 
 <div class="row">
   
-  <div class="left" id="left">
+  <div class="left" id="links">
+    
+    <h1>Links</h1>
     <p><a href="#/click1">click me #1!</a></p>
     <p><a href="#/click2">click me #2!</a></p>
+    <p><a href="#">does nuthin!</a></p>
+    
   </div>
 
-  <div class="right" id="right">    
+  <div class="right" id="forms">  
+      
+    <h1>Forms</h1>
     <form action="#/post" method="post" accept-charset="utf-8">
       <p><input type="submit" value="Post &rarr;"/></p>
       <p><input type="button" type="submit" name="some_name" value="button_input" id="some_name"/></p>
@@ -105,9 +119,10 @@
       <p><input type="submit" value="Put &rarr;"/></p>
     </form>
   
-    <form action="#/delete" method="delete" accept-charset="utf-8">
-      <p><input type="submit" value="Delete &rarr;"/></p>
+    <form action="#/destroy" method="destroy" accept-charset="utf-8">
+      <p><input type="submit" value="Destroy &rarr;"/></p>
     </form>
+    
   </div>
   
   <div class="clear"></div>
