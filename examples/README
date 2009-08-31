@@ -183,3 +183,47 @@ jQuery.expr[':'].regex = function(elem, index, match) {
 
 
 
+    // $target.is('[type=submit], [type=image]')
+
+    // if ($(target).is("input[type='submit']")) {
+    //   console.log('object');
+    //   return false;
+    // };
+
+
+    // _checkFormSubmission: function(form) {
+    //   var $form, path, verb, params, returned;
+    //   this.trigger('check-form-submission', {form: form});
+    //   $form = $(form);
+    //   path  = $form.attr('action');
+    //   verb  = $form.attr('method').toString().toLowerCase();
+    //   params = {};
+    //   $form.find(':input[type!=submit]').each(function() {
+    //     params[$(this).attr('name')] = $(this).val();
+    //   });
+    //   try { // catch 404s
+    //     returned = this.runRoute(verb, path, params);
+    //     this.last_location = path;
+    //   } catch(e) {
+    //     if (e.toString().match(/^404/) && this.silence_404) {
+    //       return true;
+    //     } else {
+    //       throw(e);
+    //     }
+    //   }
+    //   return (typeof returned == 'undefined') ? false : returned;
+    // },
+
+
+    // if (targetNodeName=='A') {
+    //   // result.target = $(target);
+    //   console.log('click:a');
+    //   return false;
+    // };
+    // 
+    // if ((targetNodeName=='INPUT' || targetNodeName=='BUTTON') && (targetType=='submit')) {
+    //   // result.target = $(target).closest('form');
+    //   console.log('click:submit');          
+    //   return false;
+    // };
+
