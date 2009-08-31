@@ -78,10 +78,8 @@
       $(function() {
         links.run();
         forms.run();
-        
+
         console.log(links, ' : ', forms);
-        // console.log(app.toString());
-        // console.log(app2.toString());
       });
       
     })(jQuery);
@@ -96,8 +94,10 @@
   <div class="left" id="links">
     
     <h1>Links</h1>
+    
     <p><a href="#/click1">click me #1!</a></p>
     <p><a href="#/click2">click me #2!</a></p>
+    <hr />
     <p><a href="#">does nuthin!</a></p>
     
   </div>
@@ -105,19 +105,23 @@
   <div class="right" id="forms">  
       
     <h1>Forms</h1>
+    
     <form action="#/post" method="post" accept-charset="utf-8">
       <p><input type="submit" value="Post &rarr;"/></p>
       <p><input type="button" type="submit" name="some_name" value="button_input" id="some_name"/></p>
       <p><button type="submit">button_tag</button></p>
     </form>
+    <hr />
   
     <form action="#/get" method="get" accept-charset="utf-8">  
       <p><input type="submit" value="Get &rarr;"/></p>
     </form>
+    <hr />
   
     <form action="#/put" method="put" accept-charset="utf-8">
       <p><input type="submit" value="Put &rarr;"/></p>
     </form>
+    <hr />
   
     <form action="#/destroy" method="destroy" accept-charset="utf-8">
       <p><input type="submit" value="Destroy &rarr;"/></p>
